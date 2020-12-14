@@ -1,13 +1,13 @@
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 public class DoctorSchedulePanel extends Box {
@@ -135,6 +135,9 @@ public class DoctorSchedulePanel extends Box {
                     " on " + selectedDay + " day");
             Hospital.showDialog("В список расписания добавлено расписание на " + Hospital.returnDayOfWeek(selectedDay),
                     JOptionPane.INFORMATION_MESSAGE);
+            fieldCab1.setText(null);
+            fieldStartTime1.setText(null);
+            fieldEndTime1.setText(null);
         }
     }
 

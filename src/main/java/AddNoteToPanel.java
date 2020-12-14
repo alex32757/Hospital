@@ -129,6 +129,7 @@ public class AddNoteToPanel extends Box{
             Hospital.logger.log(Level.INFO, "Adding a doctor note for patient " + patientMyComboBox.getSelectedItem().toString() +
                     ", doctor " + doctorMyComboBox.getSelectedItem().toString());
             Hospital.showDialog("Справка добавлена", JOptionPane.INFORMATION_MESSAGE);
+            fieldDisease.setText(null);
         }
     }
 

@@ -4,9 +4,12 @@ import org.hibernate.cfg.Configuration;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Hospital {
+public class Hospital extends Box{
     public static SessionFactory sessionFactory = new Configuration()
             .configure()
             .buildSessionFactory();
@@ -41,7 +44,27 @@ public class Hospital {
         };
     }
 
+    public Hospital() {
+        super(BoxLayout.Y_AXIS);
+        JPanel panel = new JPanel();
+        GroupLayout groupLayout = new GroupLayout(panel);
+        panel.setLayout(groupLayout);
+
+        JLabel labelTitle = new JLabel("Работа с БД \"Поликлиника\", выберите пункт меню", SwingConstants.CENTER);
+        groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
+                .addComponent(labelTitle));
+
+        groupLayout.setHorizontalGroup(groupLayout.createParallelGroup()
+                .addComponent(labelTitle));
+
+        add(createVerticalGlue());
+        add(panel);
+        add(createVerticalGlue());
+        Hospital.logger.log(Level.INFO, "Starting a program");
+    }
+
     public static void main(String[] args) {
+        Hospital hospital = new Hospital();
         AddPatientToPanel addPatientToPanel = new AddPatientToPanel();
         AddDocToPanel addDocToPanel = new AddDocToPanel();
         DoctorSchedulePanel doctorSchedulePanel = new DoctorSchedulePanel();
@@ -56,6 +79,9 @@ public class Hospital {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(new Dimension(800, 500));
         frame.setLocationRelativeTo(null);
+        frame.setContentPane(hospital);
+        frame.revalidate();
+        frame.repaint();
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menuPatient = new JMenu("Пациенты");
@@ -100,20 +126,17 @@ public class Hospital {
             frame.setContentPane(addPatientToPanel);
             frame.revalidate();
             frame.repaint();
-            System.out.println("test");
         });
         addDoctor.addActionListener((e) -> {
             frame.setContentPane(addDocToPanel);
             frame.revalidate();
             frame.repaint();
-            System.out.println("test");
         });
         scheduleDoctor.addActionListener((e) -> {
             doctorSchedulePanel.updateComboBox();
             frame.setContentPane(doctorSchedulePanel);
             frame.revalidate();
             frame.repaint();
-            System.out.println("test");
         });
         changePatient.addActionListener((e -> {
             editPatientOnPanel.updateComboBox();
@@ -165,6 +188,14 @@ public class Hospital {
         });
 
         frame.setVisible(true);
+        FileHandler fh;
+
+        try {
+            fh = new FileHandler("D:/hospital.log");
+            logger.addHandler(fh);
+        } catch (SecurityException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

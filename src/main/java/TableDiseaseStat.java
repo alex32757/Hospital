@@ -52,7 +52,7 @@ public class TableDiseaseStat extends Box {
 
             Thread threadPdf = new Thread(() -> {
                 try {
-                    JasperExportManager.exportReportToPdfFile(print, "C:\\Users\\alex3\\Desktop\\jasper.pdf");
+                    JasperExportManager.exportReportToPdfFile(print, "D:\\Hospital_report.pdf");
                 } catch (JRException jrException) {
                     Hospital.logger.log(Level.WARNING, "Error in thread creation (threadPdf)");
                     jrException.printStackTrace();
@@ -60,7 +60,7 @@ public class TableDiseaseStat extends Box {
             });
             Thread threadHtml = new Thread(() -> {
                 try {
-                    JasperExportManager.exportReportToHtmlFile(print, "C:\\Users\\alex3\\Desktop\\jasper.html");
+                    JasperExportManager.exportReportToHtmlFile(print, "D:\\Hospital_report.html");
                 } catch (JRException jrException) {
                     Hospital.logger.log(Level.WARNING, "Error in thread creation (threadHtml)");
                     jrException.printStackTrace();

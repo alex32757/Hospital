@@ -52,7 +52,7 @@ public class TableDoctorNote extends Box {
             Hospital.session(session -> doctorNoteList = session.createQuery("select d from DoctorNote d where d.patient.id = :id",
                     DoctorNote.class).setParameter("id", patient.getId()).getResultList());
             for (DoctorNote dn : doctorNoteList) {
-                String[] str = {dn.getDoctor().getLastName(), dn.getDisease(), dn.getDate()};
+                String[] str = {dn.getDoctor().toString(), dn.getDisease(), dn.getDate()};
                 tableList.add(str);
             }
             TableModel tableModel = new DefaultTableModel(

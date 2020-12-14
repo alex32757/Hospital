@@ -1,5 +1,3 @@
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -121,6 +119,9 @@ public class AddDocToPanel extends Box {
             });
             Hospital.logger.log(Level.INFO, "Adding a doctor " + fieldFirstName.getText() + " " + fieldLastName.getText());
             Hospital.showDialog("Доктор добавлен", JOptionPane.INFORMATION_MESSAGE);
+            fieldLastName.setText(null);
+            fieldFirstName.setText(null);
+            fieldSpecialization.setText(null);
         }
     }
 }

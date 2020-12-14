@@ -102,7 +102,8 @@ public class AddPatientToPanel extends Box{
             Hospital.session((s) -> s.save(new Patient(fieldFirstName.getText(), fieldLastName.getText(), dateOfBirth)));
             Hospital.logger.log(Level.INFO, "Adding a patient " + fieldFirstName.getText() + " " + fieldLastName.getText());
             Hospital.showDialog("Пациент добавлен", JOptionPane.INFORMATION_MESSAGE);
+            fieldFirstName.setText(null);
+            fieldLastName.setText(null);
         }
     }
-
 }
