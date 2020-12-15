@@ -18,7 +18,6 @@ public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
             Calendar cal = (Calendar) value;
             return dateFormatter.format(cal.getTime());
         }
-
         return "";
     }
 }

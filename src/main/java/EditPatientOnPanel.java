@@ -128,7 +128,6 @@ public class EditPatientOnPanel extends Box {
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy");
         String dateOfBirth =  formatForDateNow.format((Date) datePicker.getModel().getValue());
 
-        System.out.println("Кнопка нажата");
         if(!checkFields(dateOfBirth)) {
             Hospital.logger.log(Level.WARNING, "Editing a patient is impossible, because the fields are filled incorrectly");
             Hospital.showDialog("Поля заполнены неверно", JOptionPane.ERROR_MESSAGE);
@@ -146,18 +145,20 @@ public class EditPatientOnPanel extends Box {
         }
         updateComboBox();
     }
+
     public void actionPerformedAddButtonDelete(ActionEvent e) {
         if (patientMyComboBox.getSelectedItem() != null) {
-            Hospital.session(session -> session.delete(patientMyComboBox.getSelectedItem()));
-            Hospital.logger.log(Level.INFO, "Deleting a patient " + patientMyComboBox.getSelectedItem().toString());
-            Hospital.showDialog("Пациент удалён", JOptionPane.INFORMATION_MESSAGE);
-            updateComboBox();
+            if(Hospital.confirmDialog("Вы уверены, что хотите удалить " + patientMyComboBox.getSelectedItem().toString() + "?", JOptionPane.OK_CANCEL_OPTION) == 0) {
+                Hospital.session(session -> session.delete(patientMyComboBox.getSelectedItem()));
+                Hospital.logger.log(Level.INFO, "Deleting a patient " + patientMyComboBox.getSelectedItem().toString());
+                Hospital.showDialog("Пациент удалён", JOptionPane.INFORMATION_MESSAGE);
+                updateComboBox();
+            }
         }
         else {
             Hospital.logger.log(Level.WARNING, "Deleting a patient is impossible, because the patient is not selected");
             Hospital.showDialog("Пациент не выбран", JOptionPane.ERROR_MESSAGE);
         }
     }
-
 }
 

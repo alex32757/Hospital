@@ -41,7 +41,6 @@ public class DoctorSchedulePanel extends Box {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selectedDay = list.locationToIndex(e.getPoint()) + 1;
-               // System.out.println(selectedDay);
             }
         });
 

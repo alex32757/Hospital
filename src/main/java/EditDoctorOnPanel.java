@@ -163,16 +163,17 @@ public class EditDoctorOnPanel extends Box {
     }
     public void actionPerformedAddButtonDelete(ActionEvent e) {
         if (doctorMyComboBox.getSelectedItem() != null) {
-            Hospital.session(session -> session.delete(doctorMyComboBox.getSelectedItem()));
-            Hospital.logger.log(Level.INFO, "Deleting a doctor " + doctorMyComboBox.getSelectedItem().toString());
-            Hospital.showDialog("Доктор удалён", JOptionPane.INFORMATION_MESSAGE);
-            updateComboBox();
+            if(Hospital.confirmDialog("Вы уверены, что хотите удалить " + doctorMyComboBox.getSelectedItem().toString() +"?", JOptionPane.OK_CANCEL_OPTION) == 0) {
+                Hospital.session(session -> session.delete(doctorMyComboBox.getSelectedItem()));
+                Hospital.logger.log(Level.INFO, "Deleting a doctor " + doctorMyComboBox.getSelectedItem().toString());
+                Hospital.showDialog("Доктор удалён", JOptionPane.INFORMATION_MESSAGE);
+                updateComboBox();
+            }
         }
         else {
             Hospital.logger.log(Level.WARNING, "Deleting a doctor is impossible, because the doctor is not selected");
             Hospital.showDialog("Доктор не выбран", JOptionPane.ERROR_MESSAGE);
         }
     }
-
 }
 

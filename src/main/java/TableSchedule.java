@@ -35,7 +35,6 @@ public class TableSchedule extends Box {
         groupLayout.setHorizontalGroup(groupLayout.createParallelGroup()
                 .addComponent(doctorMyComboBox.getComboBox())
                 .addComponent(tableScroll));
-
         add(panel);
     }
 
@@ -62,5 +61,4 @@ public class TableSchedule extends Box {
             Hospital.logger.log(Level.INFO, "Showing a schedule for doctor " + doctorMyComboBox.getSelectedItem().toString());
         }
     }
-
 }

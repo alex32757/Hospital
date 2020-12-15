@@ -1,10 +1,8 @@
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
 @Table(name = "patient")
-
 public class Patient extends Person implements MyComboBox.GetId {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

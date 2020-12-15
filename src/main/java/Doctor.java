@@ -1,7 +1,6 @@
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
 @Table(name = "doctor")
 public class Doctor extends Person implements MyComboBox.GetId {
@@ -16,6 +15,9 @@ public class Doctor extends Person implements MyComboBox.GetId {
 
     @OneToMany(mappedBy = "doctor", orphanRemoval = true)
     private List<WorkTime> schedule;
+
+    @OneToMany(mappedBy = "doctor", orphanRemoval = true)
+    private List<DoctorNote> doctorNotes;
 
     public Doctor() {}
 

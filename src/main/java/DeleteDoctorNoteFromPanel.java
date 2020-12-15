@@ -76,14 +76,15 @@ public class DeleteDoctorNoteFromPanel extends Box{
     public void actionPerformedChooseCombo(ActionEvent e) {
         if (patientMyComboBox.getSelectedItem() == null) return;
         doctorNoteMyComboBox.update(patientMyComboBox.getSelectedItem().getDoctorNotes());
-
     }
 
     public void actionPerformedDeleteButton(ActionEvent e) {
-        Hospital.session(session -> session.delete(doctorNoteMyComboBox.getSelectedItem()));
-        Hospital.logger.log(Level.INFO, "Removal a doctor note for patient " +
-                doctorNoteMyComboBox.getSelectedItem().getPatient().toString() + ", doctor " +
-                doctorNoteMyComboBox.getSelectedItem().getDoctor().toString());
-        Hospital.showDialog("Справка удалена", JOptionPane.INFORMATION_MESSAGE);
+        if(Hospital.confirmDialog("Вы уверены, что хотите удалить справку?", JOptionPane.OK_CANCEL_OPTION) == 0) {
+            Hospital.session(session -> session.delete(doctorNoteMyComboBox.getSelectedItem()));
+            Hospital.logger.log(Level.INFO, "Removal a doctor note for patient " +
+                    doctorNoteMyComboBox.getSelectedItem().getPatient().toString() + ", doctor " +
+                    doctorNoteMyComboBox.getSelectedItem().getDoctor().toString());
+            Hospital.showDialog("Справка удалена", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }

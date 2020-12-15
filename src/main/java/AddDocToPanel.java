@@ -105,10 +105,8 @@ public class AddDocToPanel extends Box {
     }
 
     public void actionPerformedAddButton(ActionEvent e) {
-        System.out.println("Кнопка нажата");
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy");
         String dateOfBirth =  formatForDateNow.format((Date) datePicker.getModel().getValue());
-
         if(!checkFields(dateOfBirth)) {
             Hospital.logger.log(Level.WARNING, "Adding a doctor is impossible, because the fields are filled incorrectly");
             Hospital.showDialog("Поля заполнены неверно", JOptionPane.ERROR_MESSAGE);

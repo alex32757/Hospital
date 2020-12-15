@@ -32,6 +32,10 @@ public class Hospital extends Box{
         JOptionPane.showMessageDialog(frame, text, "Сообщение", type);
     }
 
+    public static int confirmDialog(String text, int type) {
+        return JOptionPane.showConfirmDialog(frame,text, "Подтвердите действие", type);
+    }
+
     public static String returnDayOfWeek(int day) {
         return switch (day) {
             case 1 -> "Понедельник";
@@ -65,7 +69,6 @@ public class Hospital extends Box{
 
     public static void main(String[] args) {
         FileHandler fh;
-
         try {
             fh = new FileHandler("D:/hospital.log");
             logger.addHandler(fh);
@@ -197,9 +200,7 @@ public class Hospital extends Box{
         });
 
         frame.setVisible(true);
-
     }
-
 }
 
 //
