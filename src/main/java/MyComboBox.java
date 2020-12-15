@@ -4,7 +4,6 @@ import java.util.List;
 public class MyComboBox<T extends MyComboBox.GetId> {
     private final JComboBox<Item<T>> comboBox;
     private final Caster<T> caster;
-    private List<T> list;
 
     public MyComboBox(Caster<T> caster) {
         comboBox = new JComboBox<>();
@@ -17,14 +16,12 @@ public class MyComboBox<T extends MyComboBox.GetId> {
     }
 
     public void update(List<T> list) {
-        this.list = list;
         comboBox.removeAllItems();
         list.forEach((v) -> comboBox.addItem(new Item<>(caster.cast(v), v)));
     }
 
     public T getSelectedItem() {
-        return comboBox.getSelectedItem() != null ?
-                ((Item<T>) comboBox.getSelectedItem()).getElement() : null;
+        return comboBox.getSelectedItem() != null ? ((Item<T>) comboBox.getSelectedItem()).getElement() : null;
     }
 
     public JComboBox<Item<T>> getComboBox() {
@@ -56,9 +53,6 @@ public class MyComboBox<T extends MyComboBox.GetId> {
         public T getElement() {
             return element;
         }
-
-
-
     }
 
 }

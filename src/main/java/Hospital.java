@@ -64,6 +64,15 @@ public class Hospital extends Box{
     }
 
     public static void main(String[] args) {
+        FileHandler fh;
+
+        try {
+            fh = new FileHandler("D:/hospital.log");
+            logger.addHandler(fh);
+        } catch (SecurityException | IOException e) {
+            e.printStackTrace();
+        }
+
         Hospital hospital = new Hospital();
         AddPatientToPanel addPatientToPanel = new AddPatientToPanel();
         AddDocToPanel addDocToPanel = new AddDocToPanel();
@@ -188,14 +197,7 @@ public class Hospital extends Box{
         });
 
         frame.setVisible(true);
-        FileHandler fh;
 
-        try {
-            fh = new FileHandler("D:/hospital.log");
-            logger.addHandler(fh);
-        } catch (SecurityException | IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }
