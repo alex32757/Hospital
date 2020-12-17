@@ -26,8 +26,13 @@ public class Doctor extends Person implements MyComboBox.GetId {
         this.specialization = specialization;
     }
 
+    @Override
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getSpecialization() {
@@ -38,8 +43,20 @@ public class Doctor extends Person implements MyComboBox.GetId {
         this.specialization = specialization;
     }
 
+    public List<WorkTime> getSchedule() {
+        return schedule;
+    }
+
     public void setSchedule(List<WorkTime> schedule) {
         this.schedule = schedule;
+    }
+
+    public List<DoctorNote> getDoctorNotes() {
+        return doctorNotes;
+    }
+
+    public void setDoctorNotes(List<DoctorNote> doctorNotes) {
+        this.doctorNotes = doctorNotes;
     }
 
     @Override

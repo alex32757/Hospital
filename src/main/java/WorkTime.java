@@ -38,7 +38,6 @@ public class WorkTime {
     @Column(name = "cab_number", nullable = false)
     private int cabNumber;
 
-
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }

@@ -2,7 +2,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "doctorNote")
-
 public class DoctorNote implements MyComboBox.GetId {
     public DoctorNote() {}
 
